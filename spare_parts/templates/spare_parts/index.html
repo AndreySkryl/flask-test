@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Запчасти
+{% endblock %}
+
+
+{% block content_title %}
+    Запчасти
+{% endblock %}
+
+
+{% block content %}
+
+    {% for spare_part in spare_parts %}
+        <p>
+            <a href="{{ url_for('spare_parts.spare_part_detail', slug=spare_part.slug) }}">
+                {{ spare_part.title }}
+            </a>
+        </p>
+    {% endfor %}
+
+{% endblock %}
