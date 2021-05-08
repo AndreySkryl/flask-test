@@ -11,5 +11,15 @@
 
 
 {% block content %}
-    {{ spare_part.description }}
+    <div class="tags">
+        {% for tag in tags %}
+            <a href="{{ url_for('spare_parts.tag_detail', slug=tag.slug) }}">
+                <span class="label label-primary">{{ tag.name }}</span>
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="main-content">
+        {{ spare_part.description if spare_part.description else '' }}
+    </div>
 {% endblock %}

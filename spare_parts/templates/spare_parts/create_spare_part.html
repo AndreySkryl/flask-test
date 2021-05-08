@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создание новой запчасти
+{% endblock %}
+
+
+{% block content_title %}
+Новая запчасть
+{% endblock %}
+
+
+{% block content %}
+<div class="col-md-6">
+    <form action="{{ url_for('spare_parts.create_spare_part') }}" method="post">
+        {% for field in form %}
+            <div class="input-group mb-3">
+                {{ field.label(class='input-group-text') }}
+                {{ field(class='form-control') }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+</div>
+{% endblock %}
