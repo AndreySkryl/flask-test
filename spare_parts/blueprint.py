@@ -1,12 +1,16 @@
 from flask import Blueprint
-from flask import request
 from flask import render_template
+
+from flask import request
+
 from flask import redirect
 from flask import url_for
 
-from app import db
-from models import SparePart, Tag
+from flask_security import login_required
 
+from app import db
+
+from models import SparePart, Tag
 from .forms import SparePartForm
 
 
@@ -14,6 +18,7 @@ spare_parts = Blueprint('spare_parts', __name__, template_folder='templates')
 
 
 @spare_parts.route('/create', methods=['POST', 'GET'])
+@login_required
 def create_spare_part():
     if request.method == 'POST':
         title = request.form['title']
@@ -33,6 +38,22 @@ def create_spare_part():
 
     form = SparePartForm()
     return render_template('spare_parts/create_spare_part.html', form=form)
+
+
+@spare_parts.route('/<slug>/edit', methods=['POST', 'GET'])
+@login_required
+def edit_spare_part(slug):
+    spare_part = SparePart.query.filter(SparePart.slug == slug).first_or_404()
+
+    if request.method == 'POST':
+        form = SparePartForm(formdata=request.form, obj=spare_part)
+        form.populate_obj(spare_part)
+        db.session.commit()
+
+        return redirect(url_for('spare_parts.spare_part_detail', slug=spare_part.slug))
+
+    form = SparePartForm(obj=spare_part)
+    return render_template('spare_parts/edit_spare_part.html', spare_part=spare_part, form=form)
 
 
 @spare_parts.route('/')
@@ -59,13 +80,13 @@ def index():
 # http://localhost/spare_parts/<slug>
 @spare_parts.route('/<slug>')
 def spare_part_detail(slug):
-    spare_part = SparePart.query.filter(SparePart.slug == slug).first()
+    spare_part = SparePart.query.filter(SparePart.slug == slug).first_or_404()
     tags = spare_part.tags
     return render_template('spare_parts/spare_part_detail.html', spare_part=spare_part, tags=tags)
 
 
 @spare_parts.route('/tag/<slug>')
 def tag_detail(slug):
-    tag = Tag.query.filter(Tag.slug == slug).first()
+    tag = Tag.query.filter(Tag.slug == slug).first_or_404()
     _spare_parts = tag.spare_parts.all()
     return render_template('spare_parts/tag_detail.html', tag=tag, spare_parts=_spare_parts)
