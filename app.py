@@ -18,7 +18,7 @@ from config import Configuration
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(app)  # ORM (Object-Relational Mapping, рус. объектно-реляционное отображение, или преобразование)
 
 migrate = Migrate(app, db)
 manager = Manager(app)
@@ -51,17 +51,20 @@ class HomeAdminView(AdminMixin, AdminIndexView):
     pass
 
 
-class SparePartAdminView(AdminMixin, BaseModelView):
-    form_columns = ['title', 'price', 'amount', 'description', 'tags']
-
-
-class TagAdminView(AdminMixin, BaseModelView):
+class CategoryAdminView(AdminMixin, BaseModelView):
     form_columns = ['name', 'spare_parts']
 
 
-admin = Admin(app, 'FlaskApp', url='/', index_view=HomeAdminView(name='Home'))
-admin.add_view(SparePartAdminView(SparePart, db.session))
-admin.add_view(TagAdminView(Tag, db.session))
+class SparePartAdminView(AdminMixin, BaseModelView):
+    form_columns = ['title', 'price', 'amount', 'description', 'category']
+
+
+admin = Admin(app, 'FlaskApp', url='/', index_view=HomeAdminView())
+admin.add_view(CategoryAdminView(Category, db.session, name='Категории'))
+admin.add_view(SparePartAdminView(SparePart, db.session, name='Запчасти'))
+
+admin.add_view(AdminView(User, db.session, name='Пользователи'))
+admin.add_view(AdminView(Role, db.session, name='Роли'))
 
 
 # Flask-security

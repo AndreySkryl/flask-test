@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Категория "{{ category.name }}"
+{% endblock %}
+
+
+{% block content_title %}
+    Запчасти из категории "{{ category.name }}":
+{% endblock %}
+
+{% block content %}
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
+    {% for spare_part in spare_parts_as_pages.items %}
+        <div class="col">
+            <div class="card">
+                <img src="/static/images/categories/{{ category.slug }}/{{ spare_part.slug }}.jpg"
+                     style="height: 300px;"
+                     class="card-img-top" alt="{{ spare_part.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ spare_part.title }}</h5>
+                    <p class="card-text">
+                        <a href="{{ url_for('spare_part_bp.spare_part_detail', slug=spare_part.slug) }}">Подробнее</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item
+                {% if not spare_parts_as_pages.has_prev %}
+                    disabled
+                {% endif %}">
+                <a class="page-link"
+                   href="{{ url_for('category_bp.category_detail', slug=category.slug, page=spare_parts_as_pages.prev_num) }}"
+                   tabindex="-1" aria-disabled="true">&laquo;</a>
+            </li>
+
+            {% for page in spare_parts_as_pages.iter_pages() %}
+                {% if page == None %}
+                    <li class="page-item">
+                        <p class="page-link">...</p>
+                    </li>
+                {% else %}
+                    <li class="page-item
+                        {% if page == spare_parts_as_pages.page %}
+                            active
+                        {% endif %}">
+                        <a class="page-link"
+                           href="{{ url_for('category_bp.category_detail', slug=category.slug, page=page) }}">{{ page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <li class="page-item
+                {% if not spare_parts_as_pages.has_next %}
+                    disabled
+                {% endif %}">
+                <a class="page-link"
+                   href="{{ url_for('category_bp.category_detail', slug=category.slug, page=spare_parts_as_pages.next_num) }}"
+                   tabindex="-1" aria-disabled="true">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}

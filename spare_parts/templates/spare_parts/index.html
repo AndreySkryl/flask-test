@@ -11,38 +11,38 @@
 
 
 {% block content %}
-{% for spare_part in pages.items %}
-<p>
-    <a href="{{ url_for('spare_parts.spare_part_detail', slug=spare_part.slug) }}">
-        {{ spare_part.title }}
-    </a>
-</p>
-{% endfor %}
+    {% for spare_part in spare_parts_as_pages.items %}
+    <p>
+        <a href="{{ url_for('spare_part_bp.spare_part_detail', slug=spare_part.slug) }}">
+            {{ spare_part.title }}
+        </a>
+    </p>
+    {% endfor %}
 
-<nav>
-    <ul class="pagination">
-        <li class="page-item
-            {% if not pages.has_prev %}
-                disabled
-            {% endif %}">
-            <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1" aria-disabled="true">&laquo;</a>
-        </li>
-
-        {% for page in pages.iter_pages() %}
+    <nav>
+        <ul class="pagination">
             <li class="page-item
-                {% if page == pages.page %}
-                    active
+                {% if not pages.has_prev %}
+                    disabled
                 {% endif %}">
-                <a class="page-link" href="./?page={{ page }}">{{ page }}</a>
+                <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1" aria-disabled="true">&laquo;</a>
             </li>
-        {% endfor %}
 
-        <li class="page-item
-            {% if not pages.has_next %}
-                disabled
-            {% endif %}">
-            <a class="page-link" href="./?page={{ pages.next_num }}" tabindex="-1" aria-disabled="true">&raquo;</a>
-        </li>
-    </ul>
-</nav>
+            {% for page in pages.iter_pages() %}
+                <li class="page-item
+                    {% if page == pages.page %}
+                        active
+                    {% endif %}">
+                    <a class="page-link" href="./?page={{ page }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+
+            <li class="page-item
+                {% if not pages.has_next %}
+                    disabled
+                {% endif %}">
+                <a class="page-link" href="./?page={{ pages.next_num }}" tabindex="-1" aria-disabled="true">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
 {% endblock %}

@@ -1,3 +1,5 @@
+import json
+import os
 import re
 
 
@@ -24,15 +26,27 @@ def slugify(s: str) -> str:
 
 
 def main():
-    tests = [
-        'двигате,./a/',
-        'коленвал',
-        'asdaq   woo        '
-    ]
+    category_names = ['Масла и автохимия', 'Шины и диски', 'Автоэлектроника']
+    filename = 'spare_parts.json'
+    slugs = []
+    for category_name in category_names:
+        full_filename = os.path.join('..', 'data', 'categories', category_name, filename)
+        if os.path.isfile(full_filename):
+            with open(full_filename, 'rt', encoding='utf-8') as json_file:
+                json_spare_parts = json.load(json_file)
+                slugs.extend([json_spare_part['title'] for json_spare_part in json_spare_parts])
+                slugs.append('')
+
+    tests = category_names[:]
+    tests.append('')
+    tests.extend(slugs)
 
     for test in tests:
-        res = slugify(test)
-        print(f'test("{test}") -> res("{res}")')
+        slug = slugify(test)
+        if slug:
+            print(f'test("{test}") -> slug("{slug}")')
+        else:
+            print()
 
 
 if __name__ == '__main__':

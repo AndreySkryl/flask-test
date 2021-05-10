@@ -5,14 +5,22 @@
 {% endblock %}
 
 {% block content_title %}
-    Это главная страница сайта по продаже комплектующих
+    Интернет-магазин автозапчастей Auto-Expert.ru
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-6 offset-md-3">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum amet, temporibus ducimus blanditiis molestias corrupti in quisquam eligendi, voluptas, suscipit at et facilis magnam. Perspiciatis quisquam voluptatem impedit, illo officiis. Iure magnam amet est nam sunt, aspernatur quam deserunt asperiores architecto itaque, incidunt, dolores, ad ratione. Minus cumque delectus velit illum itaque, consectetur laudantium. Sequi est tempore culpa alias delectus voluptatum, architecto in asperiores perspiciatis non nisi reiciendis, autem adipisci officiis provident aliquam rerum dolorum a laborum deserunt numquam. Velit, molestiae facere, laudantium aliquid nostrum modi soluta enim, sed dolor harum quod odio placeat. Placeat veritatis, quaerat soluta veniam ab.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum amet, temporibus ducimus blanditiis molestias corrupti in quisquam eligendi, voluptas, suscipit at et facilis magnam. Perspiciatis quisquam voluptatem impedit, illo officiis. Iure magnam amet est nam sunt, aspernatur quam deserunt asperiores architecto itaque, incidunt, dolores, ad ratione. Minus cumque delectus velit illum itaque, consectetur laudantium. Sequi est tempore culpa alias delectus voluptatum, architecto in asperiores perspiciatis non nisi reiciendis, autem adipisci officiis provident aliquam rerum dolorum a laborum deserunt numquam. Velit, molestiae facere, laudantium aliquid nostrum modi soluta enim, sed dolor harum quod odio placeat. Placeat veritatis, quaerat soluta veniam ab.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum amet, temporibus ducimus blanditiis molestias corrupti in quisquam eligendi, voluptas, suscipit at et facilis magnam. Perspiciatis quisquam voluptatem impedit, illo officiis. Iure magnam amet est nam sunt, aspernatur quam deserunt asperiores architecto itaque, incidunt, dolores, ad ratione. Minus cumque delectus velit illum itaque, consectetur laudantium. Sequi est tempore culpa alias delectus voluptatum, architecto in asperiores perspiciatis non nisi reiciendis, autem adipisci officiis provident aliquam rerum dolorum a laborum deserunt numquam. Velit, molestiae facere, laudantium aliquid nostrum modi soluta enim, sed dolor harum quod odio placeat. Placeat veritatis, quaerat soluta veniam ab.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum amet, temporibus ducimus blanditiis molestias corrupti in quisquam eligendi, voluptas, suscipit at et facilis magnam. Perspiciatis quisquam voluptatem impedit, illo officiis. Iure magnam amet est nam sunt, aspernatur quam deserunt asperiores architecto itaque, incidunt, dolores, ad ratione. Minus cumque delectus velit illum itaque, consectetur laudantium. Sequi est tempore culpa alias delectus voluptatum, architecto in asperiores perspiciatis non nisi reiciendis, autem adipisci officiis provident aliquam rerum dolorum a laborum deserunt numquam. Velit, molestiae facere, laudantium aliquid nostrum modi soluta enim, sed dolor harum quod odio placeat. Placeat veritatis, quaerat soluta veniam ab.</p>
+    <div class="card-group">
+        {% for category in categories %}
+            <div class="card">
+                <img src="/static/images/categories/{{ category.slug }}/category.jpg"
+                     style="height: 250px"
+                     class="card-img-top" alt="{{ category.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ url_for('category_bp.category_detail', slug=category.slug) }}">{{ category.name }}</a>
+                    </h5>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

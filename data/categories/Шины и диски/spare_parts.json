@@ -1,0 +1,96 @@
+[
+    {
+        "title": "Bantaj BJ8325",
+        "price": 2000,
+        "amount": 8,
+        "description": "Диск колёсный стальной \"BJ8325 6.5x16, 5x108, ET50, D63.3\""
+    },
+    {
+        "title": "Trebl 9107466",
+        "price": 1900,
+        "amount": 4,
+        "description": "Диск колёсный стальной \"53A49A 5.5x14, 4x100, ET49, D56.6\""
+    },
+    {
+        "title": "Trebl 9122358",
+        "price": 2350,
+        "amount": 8,
+        "description": "Диск колёсный стальной \"8325 6.5x16, 5x108, ET50, D63.3\""
+    },
+    {
+        "title": "Trebl 9112642",
+        "price": 1700,
+        "amount": 4,
+        "description": "Диск колёсный стальной \"42E45S 4.5x13, 4x114,3, ET45, D69.1\""
+    },
+    {
+        "title": "General Motors 13259235",
+        "price": 1650,
+        "amount": 4,
+        "description": "Стальной диск 16\""
+    },
+    {
+        "title": "Trebl 9122357",
+        "price": 2650,
+        "amount": 12,
+        "description": "Диск колёсный стальной \"9975 6.5x16, 5x108, ET52.5, D63.3\""
+    },
+    {
+        "title": "Trebl 9112666",
+        "price": 1800,
+        "amount": 4,
+        "description": "Диск колёсный стальной \"64A50C 6x15, 4x100, ET50, D60.1\""
+    },
+    {
+        "title": "Trebl 9122321",
+        "price": 1770,
+        "amount": 12,
+        "description": "Диск колёсный стальной \"4375 5x13, 4x100, ET46, D54.1\""
+    },
+    {
+        "title": "Trebl 9112728",
+        "price": 2300,
+        "amount": 12,
+        "description": "Диск колёсный стальной \"7855 6.5x16, 5x114,3, ET40, D66.1\""
+    },
+    {
+        "title": "Trebl 9171088",
+        "price": 2400,
+        "amount": 8,
+        "description": "Диск колёсный стальной \"x40031 6.5x16, 4x108, ET37.5, D63.3\""
+    },
+
+
+
+
+    {
+        "title": "Nokian T430098",
+        "price": 3200,
+        "amount": 8,
+        "description": "Шина летняя \"Nordman SX2 185/65R15 88H\""
+    },
+    {
+        "title": "Yokohama R2447",
+        "price": 3600,
+        "amount": 12,
+        "description": "Шина летняя \"BluEarth-Es ES32 195/65R15 91V\""
+    },
+    {
+        "title": "Hankook 1010082",
+        "price": 8850,
+        "amount": 8,
+        "description": "Шина летняя \"Optimo K415 225/60R17 99H\""
+    },
+    {
+        "title": "Cordiant 355816419",
+        "price": 3200,
+        "amount": 4,
+        "description": "Шина летняя \"Road Runner 195/65R15 91H\""
+    },
+    {
+        "title": "Pirelli 2347100",
+        "price": 5200,
+        "amount": 4,
+        "description": "Шина летняя \"Formula Energy 215/65R16 98H\""
+    }
+]
